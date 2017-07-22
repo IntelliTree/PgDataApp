@@ -40,7 +40,10 @@ sub parse_prod_code {
 	
 	my $dt = DateTime
 		->new( year => $meta->{year}, month => 1, day => 1 )
-		->add( days => ($meta->{jul} - 1)); 
+		->add( days => ($meta->{jul} - 1));
+	
+	# This catches invalid julian dates, like those greater than 365... 
+	return 0 unless ($dt->year eq $meta->{year});
 	
 	$meta->{datetime} = join(' ', $dt->ymd('-'),join(':',$meta->{hour},$meta->{minute},'00'));
 		
