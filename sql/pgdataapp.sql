@@ -11,9 +11,14 @@
 -- 
 --------------------------------------------------------------------------------
 
+
+CREATE TABLE [contact_method] (
+	[method] varchar PRIMARY KEY NOT NULL
+);
+
 CREATE TABLE [complaint] (
   [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  [initial_receipt_date] varchar,
+  [initial_receipt_date] date,
   [case_contact_method] varchar,
   [summary] varchar,
   [case_region] varchar,
@@ -47,6 +52,8 @@ CREATE TABLE [complaint] (
   [comment_criticality] varchar,
   [conclusion_code] varchar,
   [store_of_purchase] varchar,
-  [complaint_metric] varchar
+  [complaint_metric] varchar,
+	
+	FOREIGN KEY ([case_contact_method]) REFERENCES [contact_method] ([method]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

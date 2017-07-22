@@ -279,6 +279,28 @@ __PACKAGE__->config(
           },
         },
       },
+      ContactMethod => {
+        display_column => 'method',
+        title          => 'ContactMethod',
+        title_multi    => 'ContactMethod Rows',
+        iconCls        => 'ra-icon-pg',
+        multiIconCls   => 'ra-icon-pg-multi',
+        columns        => {
+          method => {
+            header => 'method',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+          complaints => {
+            header => 'complaints',
+            #width => 100,
+            #sortable => 1,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+        },
+      },
     },
   },
 

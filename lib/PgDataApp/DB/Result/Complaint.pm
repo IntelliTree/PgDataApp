@@ -17,9 +17,9 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "initial_receipt_date",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "date", is_nullable => 1 },
   "case_contact_method",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1 },
   "summary",
   { data_type => "varchar", is_nullable => 1 },
   "case_region",
@@ -88,10 +88,34 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
+__PACKAGE__->belongs_to(
+  "case_contact_method",
+  "PgDataApp::DB::Result::ContactMethod",
+  { method => "case_contact_method" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 16:59:37
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:odmp7f+0QBeSyS8yB3Sodg
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 18:10:26
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+uAY50LuKcqQG2YONuiy+A
+
+sub schema { (shift)->result_source->schema }
+
+sub insert {
+	my ($self, $columns) = @_;
+	$self->set_inflated_columns($columns) if ($columns);
+	
+	if(my $method = $self->get_column('case_contact_method')) {
+		$self->schema->resultset('ContactMethod')->find_or_create({ method => $method });
+	}
+	
+	$self->next::method
+}
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

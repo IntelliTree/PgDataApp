@@ -5,18 +5,24 @@ use warnings;
 
 $| = 1;
 
-my $fn = join(' ',@ARGV)  or die "missing input file argument\n";
+use RapidApp::Util ':all';
+#use Path::Class qw/file dir/;
+
+my $dir = join(' ',@ARGV)  or die "missing input dir argument\n";
+#my $Dir = dir($dir)->resolve;
 
 use Spreadsheet::XLSX;
-
-use RapidApp::Util ':all';
 
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
 use PgDataApp;
 
-&_do_populate($fn);
+for my $File (glob("$dir/*.xlsx")) {
+	next unless (-f $File && "$File" =~ /\.xlsx$/);
+	&_do_populate($File);
+}
+
 
 sub _do_populate {
 	my $fn = shift;
@@ -64,7 +70,7 @@ sub _do_populate {
 		push @rows, \@cols;
 	}
 	
-	PgDataApp->model('DB::Complaint')->populate(\@rows);
+	my $ret = PgDataApp->model('DB::Complaint')->populate(\@rows);
 	
 }
 
