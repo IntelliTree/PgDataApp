@@ -277,6 +277,30 @@ __PACKAGE__->config(
             #renderer => 'RA.ux.App.someJsFunc',
             #profiles => [],
           },
+          pc_invalid => {
+            header => 'pc_invalid',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+          pc_timestamp => {
+            header => 'pc_timestamp',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+          pc_plant_code => {
+            header => 'pc_plant_code',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+          pc_line_number => {
+            header => 'pc_line_number',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
         },
       },
       ContactMethod => {

@@ -20,7 +20,7 @@ sub parse_prod_code {
 	my $pc = shift or return undef;
 	
 	# invalid
-	return -1 unless (
+	return 0 unless (
 		($pc =~ /^\d+$/)
 		&& length($pc) == 14
 	);

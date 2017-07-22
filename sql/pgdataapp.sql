@@ -54,6 +54,11 @@ CREATE TABLE [complaint] (
   [store_of_purchase] varchar,
   [complaint_metric] varchar,
 	
+	[pc_invalid] boolean,
+	[pc_timestamp] datetime,
+	[pc_plant_code] varchar,
+	[pc_line_number] varchar,
+	
 	FOREIGN KEY ([case_contact_method]) REFERENCES [contact_method] ([method]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

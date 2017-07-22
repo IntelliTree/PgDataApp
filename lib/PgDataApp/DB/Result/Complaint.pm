@@ -86,6 +86,14 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1 },
   "complaint_metric",
   { data_type => "varchar", is_nullable => 1 },
+  "pc_invalid",
+  { data_type => "boolean", is_nullable => 1 },
+  "pc_timestamp",
+  { data_type => "datetime", is_nullable => 1 },
+  "pc_plant_code",
+  { data_type => "varchar", is_nullable => 1 },
+  "pc_line_number",
+  { data_type => "varchar", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->belongs_to(
@@ -101,8 +109,10 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 18:10:26
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+uAY50LuKcqQG2YONuiy+A
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 19:31:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jKhZ8LQL931iVAuEaiiAdg
+
+use PgDataApp::Util ':all';
 
 sub schema { (shift)->result_source->schema }
 
@@ -113,6 +123,21 @@ sub insert {
 	if(my $method = $self->get_column('case_contact_method')) {
 		$self->schema->resultset('ContactMethod')->find_or_create({ method => $method });
 	}
+	
+	my $invalid_pc = undef;
+	if (my $pc = $self->get_column('production_code')) {
+		
+		my $pc_meta = PgDataApp::Util->parse_prod_code( $pc );
+		$invalid_pc = $pc_meta ? 0 : 1;
+		
+		unless($invalid_pc) {
+			$self->pc_timestamp  ( $pc_meta->{datetime} );
+			$self->pc_plant_code ( $pc_meta->{plant}    );
+			$self->pc_line_number( $pc_meta->{line_no}  );
+		}
+	}
+	
+	$self->pc_invalid($invalid_pc);
 	
 	$self->next::method
 }
