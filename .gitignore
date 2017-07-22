@@ -1,1 +1,4 @@
 *.db
+raw_data/
+top_raw_data/
+.DS_Store
