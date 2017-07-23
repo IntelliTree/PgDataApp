@@ -120,7 +120,7 @@ CREATE TABLE [maker_stream] (
 
 CREATE TABLE [packaging_downtime] (
   [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  [start_time] datretime,
+  [start_time] datetime,
   [line] varchar,
   [machine] varchar,
   [downtime] decimal,

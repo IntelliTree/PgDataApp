@@ -17,7 +17,7 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "start_time",
-  { data_type => "datretime", is_nullable => 1 },
+  { data_type => "datetime", is_nullable => 1 },
   "line",
   { data_type => "varchar", is_nullable => 1 },
   "machine",
@@ -208,8 +208,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 03:11:42
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sKCnMrGRF8/Ly59JCW9tFA
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 03:27:34
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Pz/Izrnpwrrw3hTURKScpA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
