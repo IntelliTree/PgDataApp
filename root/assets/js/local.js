@@ -22,6 +22,7 @@ function renderLineChart(title,cData) {
 			backgroundColor: color,
 			borderColor: color,
 			borderWidth: 1,
+			fill: true,
 			data: []
 		};
 		data.datasets[ndx].data.push( val );
@@ -30,8 +31,10 @@ function renderLineChart(title,cData) {
   Ext.each(cData,function(itm){
     data.labels.push(itm.day);
 		
-		appendDatSet(0,chartColors.red,'A (Kg/Hr)',itm.a_kg_hr);
+		appendDatSet(0,chartColors.red,'D (Kg/Hr)',itm.d_kg_hr);
 		appendDatSet(1,chartColors.blue,'B (Kg/Hr)',itm.b_kg_hr);
+		appendDatSet(2,chartColors.green,'C (Kg/Hr)',itm.c_kg_hr);
+		appendDatSet(2,chartColors.purple,'E (Kg/Hr)',itm.e_kg_hr);
 
   },this);
 

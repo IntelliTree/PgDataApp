@@ -27,14 +27,22 @@ sub _line_chart_data {
 	
 	my $c = RapidApp->active_request_context;
 	
-	my @rows = $c
+	my $Rs = $c
 		->model('DB::MakerStreamDayAvg')
 		->search_rs(undef,{
 			result_class => 'DBIx::Class::ResultClass::HashRefInflator'
-		})
-		->all;
+		});
 		
-		return \@rows
+	if (my $after = $c->req->params->{after}) {
+		$Rs = $Rs->search_rs({ 'me.day' => { '>=' => $after }})
+	}
+	
+	if (my $before = $c->req->params->{before}) {
+		$Rs = $Rs->search_rs({ 'me.day' => { '<=' => $before }})
+	}
+	
+	[ $Rs->all ];
+
 }
 
 1;
