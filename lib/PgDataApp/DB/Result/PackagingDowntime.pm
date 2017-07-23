@@ -204,12 +204,14 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1 },
   "department_bc",
   { data_type => "varchar", is_nullable => 1 },
+  "start_day",
+  { data_type => "date", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 03:27:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Pz/Izrnpwrrw3hTURKScpA
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 12:29:50
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jhUP871Wg+rEHGQA/6FoEQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -266,11 +266,14 @@ CREATE TABLE [packaging_downtime] (
   [weight_check_uom] varchar,
   [maxmarkedvolume] varchar,
   [business_unit] varchar,
-  [department_bc] varchar
+  [department_bc] varchar,
+	
+	[start_day] date
 );
 CREATE INDEX [downtime_start_time_dt] ON [packaging_downtime] ([start_time]);
 CREATE INDEX [downtime_downtime] ON [packaging_downtime] ([downtime]);
 CREATE INDEX [downtime_uptime] ON [packaging_downtime] ([uptime]);
+
 
 DROP TABLE IF EXISTS [quality_window];
 CREATE TABLE [quality_window] (
