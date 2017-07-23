@@ -47,7 +47,7 @@ sub _do_populate {
 	
 	while (my $line = $fh->getline) {
 		my @cols = map {
-			($_ && $_ eq '(null)') ? undef : $_
+			($_ && ($_ =~ /^\(null\)/)) ? undef : $_
 		} split(/\t/,$line);
 
 		$cols[0] = &_decode_xls_date($cols[0]);

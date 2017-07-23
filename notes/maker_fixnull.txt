@@ -30,3 +30,4 @@
  UPDATE maker_stream SET [tank_5_c]  = NULL WHERE tank_5_c = '(null)';
  UPDATE maker_stream SET [tank_6_f]  = NULL WHERE tank_6_f = '(null)';
  UPDATE maker_stream SET [tank_7_f]  = NULL WHERE tank_7_f = '(null)';
+ UPDATE maker_stream SET [tank_7_f]  = NULL WHERE tank_7_f LIKE '(null)%';
