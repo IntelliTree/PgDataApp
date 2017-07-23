@@ -22,6 +22,7 @@ function renderLineChart(setcode,cData) {
 			backgroundColor: color,
 			borderColor: color,
 			borderWidth: 1,
+			radius: 0,
 			fill: true,
 			data: []
 		};
@@ -34,6 +35,7 @@ function renderLineChart(setcode,cData) {
 	    data.labels.push(itm.day);
 			appendDatSet(0,chartColors.red,'Complaints',itm.complaints);
 			appendDatSet(1,chartColors.grey,'All Comments',itm.all_comments);
+			appendDatSet(2,chartColors.orange,'Downtime Events (500x)',(itm.downtimes/500));
 	  },this);
 		
 	}

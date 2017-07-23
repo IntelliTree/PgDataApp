@@ -79,3 +79,7 @@ UPDATE [maker_stream_day_avg] SET complaints = (
    AND l1_comment_code_comment_type = 'Product Quality Complaint'
 );
 
+UPDATE [maker_stream_day_avg] SET downtimes = (
+  SELECT count(*) FROM [packaging_downtime] WHERE start_day = [day]
+);
+

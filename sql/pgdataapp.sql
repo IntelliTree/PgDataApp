@@ -165,7 +165,9 @@ CREATE TABLE [maker_stream_day_avg] (
   [tank_7_f] decimal,
 	
 	[complaints] integer,
-	[all_comments] integer
+	[all_comments] integer,
+	
+	[downtimes] integer
 );
 CREATE INDEX [maker_day_avg_day] ON [maker_stream_day_avg] ([day]);
 

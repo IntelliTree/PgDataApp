@@ -52,7 +52,7 @@ sub _line_chart_data {
 	    r_kg_hr 
 	    s_kg_hr  
 			
-			complaints all_comments/],
+			complaints all_comments downtimes/],
 			order_by => { -asc => 'me.day' }
 		});
 		
