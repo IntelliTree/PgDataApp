@@ -9,4 +9,5 @@
 # --
 
 requires 'RapidApp', 1.3001;
+requires 'Spreadsheet::XLSX', 0.15;
 
