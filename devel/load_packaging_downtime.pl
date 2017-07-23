@@ -24,7 +24,9 @@ use lib "$FindBin::Bin/../lib";
 
 use PgDataApp;
 
+print " \n$file ...";
 &_do_populate($file);
+print "done.\n";
 
 
 
@@ -43,13 +45,26 @@ sub _do_populate {
 	
 	my @rows = (\@columns);
 	
+  my $i = 0;
 	while (my $line = $fh->getline) {
-		my @cols = map {
+		$i++;
+    my @cols = map {
       ($_ =~ /^4\d{4}$/) || ($_ =~ /^4\d{4}\.\d+$/) 
         ? &_decode_xls_date($_) : $_
     } split(/\t/,$line);
     
-		die "mismatch column count!" unless (scalar(@columns) == scalar(@cols));
+		
+    
+    unless (scalar(@columns) == scalar(@cols)) {
+      scream_color(RED,{
+        __line => $i,
+        _header_count => scalar(@columns),
+        _value_count => scalar(@cols),
+        headers => \@columns,
+        values => \@cols
+      });
+      die "mismatch column count!";
+    }
 		
 		push @rows, \@cols;
 	}
