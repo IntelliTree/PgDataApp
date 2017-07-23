@@ -78,3 +78,42 @@ CREATE TABLE [complaint] (
 	
 );
 
+
+CREATE TABLE [maker_stream] (
+  [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  [datetime] datetime,
+  [a_kg_hr] decimal,
+  [b_kg_hr] decimal,
+  [c_kg_hr] decimal,
+  [d_kg_hr] decimal,
+  [e_kg_hr] decimal,
+  [f_kg_hr] decimal,
+  [g_kg_hr] decimal,
+  [h_kg_hr] decimal,
+  [i_kg_hr] decimal,
+  [j_kg_hr] decimal,
+  [k_kg_hr] decimal,
+  [l_kg_hr] decimal,
+  [m_kg_hr] decimal,
+  [n_kg_hr] decimal,
+  [o_kg_hr] decimal,
+  [p_kg_hr] decimal,
+  [q_kg_hr] decimal,
+  [r_kg_hr] decimal,
+  [s_kg_hr] decimal,
+  [t_lbs_min] decimal,
+  [u_lbs_min] decimal,
+  [v_lbs_min] decimal,
+  [w_lbs_min] decimal,
+  [x_lbs_min] decimal,
+  [y_lbs_min] decimal,
+  [tank_1_f] decimal,
+  [tank_2_f] decimal,
+  [tank_3_f] decimal,
+  [tank_4_f] decimal,
+  [tank_5_c] decimal,
+  [tank_6_f] decimal,
+  [tank_7_f] decimal
+);
+
+
