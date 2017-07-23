@@ -7,13 +7,25 @@
 -- your DBIC schema classes and update your base TableSpec configs, run this command
 -- from your app home directory:
 -- 
---    perl devel/model_DB_updater.pl --from-ddl --cfg
+--    perl devel/model_DB_updater.pl --from-ddl --cfg --go
 -- 
 --------------------------------------------------------------------------------
 
 
 CREATE TABLE [contact_method] (
 	[method] varchar PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE [country] (
+	[name] varchar PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE [flavor_scent] (
+	[name] varchar PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE [store] (
+	[name] varchar PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE [complaint] (
@@ -59,6 +71,10 @@ CREATE TABLE [complaint] (
 	[pc_plant_code] varchar,
 	[pc_line_number] varchar,
 	
-	FOREIGN KEY ([case_contact_method]) REFERENCES [contact_method] ([method]) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY ([case_contact_method]) REFERENCES [contact_method] ([method]) ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY ([case_country])        REFERENCES [country] ([name])          ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY ([flavor_scent_detail]) REFERENCES [flavor_scent] ([name])     ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY ([store_of_purchase])   REFERENCES [store] ([name])            ON DELETE RESTRICT ON UPDATE CASCADE
+	
 );
 

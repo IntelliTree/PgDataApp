@@ -25,7 +25,7 @@ __PACKAGE__->add_columns(
   "case_region",
   { data_type => "varchar", is_nullable => 1 },
   "case_country",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1 },
   "sector",
   { data_type => "varchar", is_nullable => 1 },
   "sub_sector",
@@ -41,7 +41,7 @@ __PACKAGE__->add_columns(
   "product_form_detail",
   { data_type => "varchar", is_nullable => 1 },
   "flavor_scent_detail",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1 },
   "collection",
   { data_type => "varchar", is_nullable => 1 },
   "version",
@@ -83,7 +83,7 @@ __PACKAGE__->add_columns(
   "conclusion_code",
   { data_type => "varchar", is_nullable => 1 },
   "store_of_purchase",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1 },
   "complaint_metric",
   { data_type => "varchar", is_nullable => 1 },
   "pc_invalid",
@@ -103,14 +103,47 @@ __PACKAGE__->belongs_to(
   {
     is_deferrable => 0,
     join_type     => "LEFT",
-    on_delete     => "CASCADE",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
+__PACKAGE__->belongs_to(
+  "case_country",
+  "PgDataApp::DB::Result::Country",
+  { name => "case_country" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
+__PACKAGE__->belongs_to(
+  "flavor_scent_detail",
+  "PgDataApp::DB::Result::FlavorScent",
+  { name => "flavor_scent_detail" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
+__PACKAGE__->belongs_to(
+  "store_of_purchase",
+  "PgDataApp::DB::Result::Store",
+  { name => "store_of_purchase" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
     on_update     => "CASCADE",
   },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 19:31:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jKhZ8LQL931iVAuEaiiAdg
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 20:08:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SYJSSWQvFpcOpA/VwD4MYg
 
 use PgDataApp::Util ':all';
 
@@ -120,8 +153,20 @@ sub insert {
 	my ($self, $columns) = @_;
 	$self->set_inflated_columns($columns) if ($columns);
 	
-	if(my $method = $self->get_column('case_contact_method')) {
-		$self->schema->resultset('ContactMethod')->find_or_create({ method => $method });
+	if(my $fk = $self->get_column('case_contact_method')) {
+		$self->schema->resultset('ContactMethod')->find_or_create({ method => $fk });
+	}
+	
+	if(my $fk = $self->get_column('case_country')) {
+		$self->schema->resultset('Country')->find_or_create({ name => $fk });
+	}
+	
+	if(my $fk = $self->get_column('flavor_scent_detail')) {
+		$self->schema->resultset('FlavorScent')->find_or_create({ name => $fk });
+	}
+	
+	if(my $fk = $self->get_column('store_of_purchase')) {
+		$self->schema->resultset('Store')->find_or_create({ name => $fk });
 	}
 	
 	my $invalid_pc = undef;
