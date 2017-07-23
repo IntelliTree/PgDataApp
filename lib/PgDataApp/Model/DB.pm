@@ -301,6 +301,12 @@ __PACKAGE__->config(
             #renderer => 'RA.ux.App.someJsFunc',
             #profiles => [],
           },
+          pc_day => {
+            header => 'pc_day',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
         },
       },
       ContactMethod => {
@@ -1554,6 +1560,28 @@ __PACKAGE__->config(
           tank_7_f => {
             header => 'tank_7_f',
             #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+        },
+      },
+      CommentType => {
+        display_column => 'type',
+        title          => 'CommentType',
+        title_multi    => 'CommentType Rows',
+        iconCls        => 'ra-icon-pg',
+        multiIconCls   => 'ra-icon-pg-multi',
+        columns        => {
+          type => {
+            header => 'type',
+            #width => 100,
+            #renderer => 'RA.ux.App.someJsFunc',
+            #profiles => [],
+          },
+          complaints => {
+            header => 'complaints',
+            #width => 100,
+            #sortable => 1,
             #renderer => 'RA.ux.App.someJsFunc',
             #profiles => [],
           },

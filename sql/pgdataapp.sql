@@ -11,6 +11,7 @@
 -- 
 --------------------------------------------------------------------------------
 
+DROP TABLE IF EXISTS [complaint];
 
 CREATE TABLE [contact_method] (
 	[method] varchar PRIMARY KEY NOT NULL
@@ -26,6 +27,10 @@ CREATE TABLE [flavor_scent] (
 
 CREATE TABLE [store] (
 	[name] varchar PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE [comment_type] (
+	[type] varchar PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE [complaint] (
@@ -68,13 +73,15 @@ CREATE TABLE [complaint] (
 	
 	[pc_invalid] boolean,
 	[pc_timestamp] datetime,
+	[pc_day] date,
 	[pc_plant_code] varchar,
 	[pc_line_number] varchar,
 	
 	FOREIGN KEY ([case_contact_method]) REFERENCES [contact_method] ([method]) ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY ([case_country])        REFERENCES [country] ([name])          ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY ([flavor_scent_detail]) REFERENCES [flavor_scent] ([name])     ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY ([store_of_purchase])   REFERENCES [store] ([name])            ON DELETE RESTRICT ON UPDATE CASCADE
+	FOREIGN KEY ([store_of_purchase])   REFERENCES [store] ([name])            ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY ([l1_comment_code_comment_type])   REFERENCES [comment_type] ([type]) ON DELETE RESTRICT ON UPDATE CASCADE
 	
 );
 CREATE INDEX [complaint_receipt_date] ON [complaint] ([initial_receipt_date]);

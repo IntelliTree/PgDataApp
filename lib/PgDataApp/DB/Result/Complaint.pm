@@ -73,7 +73,7 @@ __PACKAGE__->add_columns(
   "global_comment_path",
   { data_type => "varchar", is_nullable => 1 },
   "l1_comment_code_comment_type",
-  { data_type => "varchar", is_nullable => 1 },
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1 },
   "l2_comment_code_comment_category",
   { data_type => "varchar", is_nullable => 1 },
   "l3_comment_code_comment_description",
@@ -90,6 +90,8 @@ __PACKAGE__->add_columns(
   { data_type => "boolean", is_nullable => 1 },
   "pc_timestamp",
   { data_type => "datetime", is_nullable => 1 },
+  "pc_day",
+  { data_type => "date", is_nullable => 1 },
   "pc_plant_code",
   { data_type => "varchar", is_nullable => 1 },
   "pc_line_number",
@@ -130,6 +132,17 @@ __PACKAGE__->belongs_to(
   },
 );
 __PACKAGE__->belongs_to(
+  "l1_comment_code_comment_type",
+  "PgDataApp::DB::Result::CommentType",
+  { type => "l1_comment_code_comment_type" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
+__PACKAGE__->belongs_to(
   "store_of_purchase",
   "PgDataApp::DB::Result::Store",
   { name => "store_of_purchase" },
@@ -142,8 +155,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 20:08:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SYJSSWQvFpcOpA/VwD4MYg
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 10:19:46
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:m0qcBe/+ArnrWpUPNaQrww
 
 use PgDataApp::Util ':all';
 
@@ -169,6 +182,10 @@ sub insert {
 		$self->schema->resultset('Store')->find_or_create({ name => $fk });
 	}
 	
+	if(my $fk = $self->get_column('l1_comment_code_comment_type')) {
+		$self->schema->resultset('CommentType')->find_or_create({ type => $fk });
+	}
+	
 	my $invalid_pc = undef;
 	if (my $pc = $self->get_column('production_code')) {
 		
@@ -179,6 +196,7 @@ sub insert {
 			$self->pc_timestamp  ( $pc_meta->{datetime} );
 			$self->pc_plant_code ( $pc_meta->{plant}    );
 			$self->pc_line_number( $pc_meta->{line_no}  );
+			$self->pc_day( substr($pc_meta->{datetime},0,10) );
 		}
 	}
 	
