@@ -36,6 +36,12 @@ __PACKAGE__->config(
 		'Plugin::RapidApp::TabGui' => {
 		  dashboard_url => '/tple/site/dashboard.md',
 		},
+		
+	  'Controller::RapidApp::Template' => {
+	    # Templates ending in *.html can be accessed without the extension:
+	    default_template_extension => 'html',
+			access_class => 'PgDataApp::Template::Access',
+	  }
 
 );
 
