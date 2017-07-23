@@ -114,9 +114,11 @@ CREATE TABLE [maker_stream] (
   [tank_4_f] decimal,
   [tank_5_c] decimal,
   [tank_6_f] decimal,
-  [tank_7_f] decimal
+  [tank_7_f] decimal,
+	[day] date
 );
 CREATE INDEX [maker_dt] ON [maker_stream] ([datetime]);
+CREATE INDEX [maker_day] ON [maker_stream] ([day]);
 
 DROP TABLE IF EXISTS [packaging_downtime];
 CREATE TABLE [packaging_downtime] (

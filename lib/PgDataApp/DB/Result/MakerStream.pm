@@ -82,12 +82,14 @@ __PACKAGE__->add_columns(
   { data_type => "decimal", is_nullable => 1 },
   "tank_7_f",
   { data_type => "decimal", is_nullable => 1 },
+  "day",
+  { data_type => "date", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-22 23:12:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Tcbh+yTA0CnIixJXWOnzGw
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2017-07-23 06:55:39
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FmzRgZjrTR7FN7z5rpzw6A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

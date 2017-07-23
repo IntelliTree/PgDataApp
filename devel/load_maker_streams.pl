@@ -41,12 +41,19 @@ sub _do_populate {
 		lc($_)
 	} split(/\t/,$topline);
 	
+	push @columns, 'day';
+	
 	my @rows = (\@columns);
 	
 	while (my $line = $fh->getline) {
-		my @cols = split(/\t/,$line);
+		my @cols = map {
+			($_ && $_ eq '(null)') ? undef : $_
+		} split(/\t/,$line);
 
 		$cols[0] = &_decode_xls_date($cols[0]);
+		
+		# day column:
+		push @cols, substr($cols[0],0,10);
 		
 		die "mismatch column count!" unless (scalar(@columns) == scalar(@cols));
 		
