@@ -77,6 +77,7 @@ CREATE TABLE [complaint] (
 	FOREIGN KEY ([store_of_purchase])   REFERENCES [store] ([name])            ON DELETE RESTRICT ON UPDATE CASCADE
 	
 );
+CREATE INDEX [complaint_receipt_date] ON [complaint] ([initial_receipt_date]);
 
 
 CREATE TABLE [maker_stream] (
@@ -115,9 +116,9 @@ CREATE TABLE [maker_stream] (
   [tank_6_f] decimal,
   [tank_7_f] decimal
 );
+CREATE INDEX [maker_dt] ON [maker_stream] ([datetime]);
 
-
-
+DROP TABLE IF EXISTS [packaging_downtime];
 CREATE TABLE [packaging_downtime] (
   [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   [start_time] datetime,
@@ -215,5 +216,7 @@ CREATE TABLE [packaging_downtime] (
   [business_unit] varchar,
   [department_bc] varchar
 );
-
+CREATE INDEX [downtime_start_time_dt] ON [packaging_downtime] ([start_time]);
+CREATE INDEX [downtime_downtime] ON [packaging_downtime] ([downtime]);
+CREATE INDEX [downtime_uptime] ON [packaging_downtime] ([uptime]);
 
