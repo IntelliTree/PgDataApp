@@ -162,9 +162,13 @@ CREATE TABLE [maker_stream_day_avg] (
   [tank_4_f] decimal,
   [tank_5_c] decimal,
   [tank_6_f] decimal,
-  [tank_7_f] decimal
+  [tank_7_f] decimal,
+	
+	[complaints] integer,
+	[all_comments] integer
 );
 CREATE INDEX [maker_day_avg_day] ON [maker_stream_day_avg] ([day]);
+
 
 DROP TABLE IF EXISTS [packaging_downtime];
 CREATE TABLE [packaging_downtime] (
