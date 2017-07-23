@@ -34,7 +34,7 @@ __PACKAGE__->config(
     },
 		
 		'Plugin::RapidApp::TabGui' => {
-		  dashboard_url => '/tple/site/dashboard.md',
+		  dashboard_url => '/tple/site/dashboard.md?set=two&after=2015-01-01',
 		},
 		
 	  'Controller::RapidApp::Template' => {

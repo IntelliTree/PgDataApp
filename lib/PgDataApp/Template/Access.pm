@@ -31,7 +31,28 @@ sub _line_chart_data {
 		->model('DB::MakerStreamDayAvg')
 		->search_rs(undef,{
 			result_class => 'DBIx::Class::ResultClass::HashRefInflator',
-			columns => [qw/day a_kg_hr b_kg_hr c_kg_hr d_kg_hr e_kg_hr complaints all_comments/],
+			columns => [qw/day 
+	    a_kg_hr 
+	    b_kg_hr 
+	    c_kg_hr 
+	    d_kg_hr 
+	    e_kg_hr 
+	    f_kg_hr 
+	    g_kg_hr 
+	    h_kg_hr 
+	    i_kg_hr 
+	    j_kg_hr 
+	    k_kg_hr 
+	    l_kg_hr 
+	    m_kg_hr 
+	    n_kg_hr 
+	    o_kg_hr 
+	    p_kg_hr 
+	    q_kg_hr 
+	    r_kg_hr 
+	    s_kg_hr  
+			
+			complaints all_comments/],
 			order_by => { -asc => 'me.day' }
 		});
 		

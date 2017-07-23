@@ -1,5 +1,5 @@
 
-function renderLineChart(title,cData,mode) {
+function renderLineChart(setcode,cData) {
 
   var data = {
       labels: [],
@@ -28,7 +28,7 @@ function renderLineChart(title,cData,mode) {
 		data.datasets[ndx].data.push( val );
 	}
 	
-	if(title == 'Complaints') {
+	if(setcode == 'Complaints') {
 		
 	  Ext.each(cData,function(itm){
 	    data.labels.push(itm.day);
@@ -37,15 +37,59 @@ function renderLineChart(title,cData,mode) {
 	  },this);
 		
 	}
+	else if (setcode == 'one') {
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.yellow,'A (Kg/Hr)',itm.a_kg_hr);
+			appendDatSet(1,chartColors.blue,'B (Kg/Hr)',itm.b_kg_hr);
+			appendDatSet(2,chartColors.green,'C (Kg/Hr)',itm.c_kg_hr);
+			appendDatSet(3,chartColors.purple,'D (Kg/Hr)',itm.d_kg_hr);
+	  },this);		
+	}
+	else if (setcode == 'two') {
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.yellow,'E (Kg/Hr)',itm.e_kg_hr);
+			appendDatSet(1,chartColors.blue,'F (Kg/Hr)',itm.f_kg_hr);
+			appendDatSet(2,chartColors.green,'G (Kg/Hr)',itm.g_kg_hr);
+			appendDatSet(3,chartColors.purple,'H (Kg/Hr)',itm.h_kg_hr);
+	  },this);		
+	}
+	else if (setcode == 'three') {
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.yellow,'I (Kg/Hr)',itm.i_kg_hr);
+			appendDatSet(1,chartColors.blue,'J (Kg/Hr)',itm.j_kg_hr);
+			appendDatSet(2,chartColors.green,'K (Kg/Hr)',itm.k_kg_hr);
+			appendDatSet(3,chartColors.purple,'L (Kg/Hr)',itm.l_kg_hr);
+	  },this);		
+	}
+	else if (setcode == 'four') {
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.yellow,'M (Kg/Hr)',itm.m_kg_hr);
+			appendDatSet(1,chartColors.blue,'N (Kg/Hr)',itm.n_kg_hr);
+			appendDatSet(2,chartColors.green,'O (Kg/Hr)',itm.o_kg_hr);
+			appendDatSet(3,chartColors.purple,'P (Kg/Hr)',itm.p_kg_hr);
+	  },this);		
+	}
+	else if (setcode == 'five') {
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.yellow,'Q (Kg/Hr)',itm.q_kg_hr);
+			appendDatSet(1,chartColors.blue,'R (Kg/Hr)',itm.r_kg_hr);
+			appendDatSet(2,chartColors.green,'S (Kg/Hr)',itm.s_kg_hr);
+	  },this);		
+	}
 	else {
 		
 	  Ext.each(cData,function(itm){
 	    data.labels.push(itm.day);
 		
-			appendDatSet(0,chartColors.yellow,'D (Kg/Hr)',itm.d_kg_hr);
-			appendDatSet(1,chartColors.blue,'B (Kg/Hr)',itm.b_kg_hr);
-			appendDatSet(2,chartColors.green,'C (Kg/Hr)',itm.c_kg_hr);
-			appendDatSet(3,chartColors.purple,'E (Kg/Hr)',itm.e_kg_hr);
+			appendDatSet(0,chartColors.yellow,'S (Kg/Hr)',itm.s_kg_hr);
+			appendDatSet(1,chartColors.blue,'R (Kg/Hr)',itm.r_kg_hr);
+			appendDatSet(2,chartColors.green,'Q (Kg/Hr)',itm.q_kg_hr);
+			appendDatSet(3,chartColors.purple,'P (Kg/Hr)',itm.p_kg_hr);
 
 	  },this);
 		

@@ -1,5 +1,9 @@
 
-[% SET chart_json = line_chart_data_json %]
+[% SET chart_json = line_chart_data_json 
+ title = 'Dashbord ' _ c.req.params.set
+%]
+
+<title>[% title %]</title>
 
 <div style="height:350px;padding-bottom:25px;">
   <canvas width=700 height=250>
@@ -7,7 +11,7 @@
     <img 
       src="[% c.mount_url %]/assets/rapidapp/misc/static/s.gif" 
       onload='renderLineChart.call(this,
-				"Maker Stream Data",
+				"[% c.req.params.set %]",
 				[% chart_json %]
 			)' 
     >
