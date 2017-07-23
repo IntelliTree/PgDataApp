@@ -220,3 +220,36 @@ CREATE INDEX [downtime_start_time_dt] ON [packaging_downtime] ([start_time]);
 CREATE INDEX [downtime_downtime] ON [packaging_downtime] ([downtime]);
 CREATE INDEX [downtime_uptime] ON [packaging_downtime] ([uptime]);
 
+DROP TABLE IF EXISTS [quality_window];
+CREATE TABLE [quality_window] (
+  [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+--  [date_yyyy_mm_dd] varchar,
+--  [time_hh_mm_ss] varchar,
+  [datetime] datetime,
+  [sample_date] date,
+  [sample_time] varchar,
+  [analyst] varchar,
+  [line] varchar,
+  [flavor] varchar,
+  [odor_grade] varchar,
+  [appearance] varchar,
+  [koralone_bit] varchar,
+  [density_sg] varchar,
+  [color_l] varchar,
+  [color_c] varchar,
+  [color_h] varchar,
+  [delta_e2000_abt] varchar,
+  [delta_e2000_m_amp_r] varchar,
+  [delta_e2000_lv] varchar,
+  [delta_e2000_ha_ts] varchar,
+  [delta_e2000_gfw_nz] varchar,
+  [delta_e2000_go] varchar,
+  [delta_e2000_mlb_wd] varchar,
+  [ph] varchar,
+  [active_matter_ni] varchar,
+  [comments] varchar
+);
+CREATE INDEX [qw_dt] ON [quality_window] ([datetime]);
+CREATE INDEX [qw_sample_date] ON [quality_window] ([sample_date]);
+
+
