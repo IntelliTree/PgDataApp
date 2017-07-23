@@ -69,3 +69,13 @@
 FROM [maker_stream]
 GROUP BY [day];
 
+
+UPDATE [maker_stream_day_avg] SET all_comments = (
+  SELECT count(*) FROM [complaint] WHERE pc_day = [day]
+);
+
+UPDATE [maker_stream_day_avg] SET complaints = (
+  SELECT count(*) FROM [complaint] WHERE pc_day = [day]
+   AND l1_comment_code_comment_type = 'Product Quality Complaint'
+);
+
