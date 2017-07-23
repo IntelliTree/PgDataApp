@@ -37,7 +37,13 @@ sub _dump_tsv {
 	
 	my @sheets = @{$excel->{Worksheet}};
 	
+  my $i = 0;
 	for my $sheet (@sheets) {
+  
+  # strip headers of subsequent sheets  
+  if($i++) {
+    $sheet->{MinRow}++;
+  }
 	
 	$sheet->{MaxRow} ||= $sheet->{MinRow}; # copied from libs synopsis
 	print "  $sheet->{Name} - MaxCol: $sheet->{MaxCol}, MaxRow: $sheet->{MaxRow} \n";
