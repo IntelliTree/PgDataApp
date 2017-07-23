@@ -1,5 +1,5 @@
 
-function renderLineChart(title,cData) {
+function renderLineChart(title,cData,mode) {
 
   var data = {
       labels: [],
@@ -28,15 +28,30 @@ function renderLineChart(title,cData) {
 		data.datasets[ndx].data.push( val );
 	}
 	
-  Ext.each(cData,function(itm){
-    data.labels.push(itm.day);
+	if(title == 'Complaints') {
 		
-		appendDatSet(0,chartColors.red,'D (Kg/Hr)',itm.d_kg_hr);
-		appendDatSet(1,chartColors.blue,'B (Kg/Hr)',itm.b_kg_hr);
-		appendDatSet(2,chartColors.green,'C (Kg/Hr)',itm.c_kg_hr);
-		appendDatSet(2,chartColors.purple,'E (Kg/Hr)',itm.e_kg_hr);
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+			appendDatSet(0,chartColors.red,'Complaints',itm.complaints);
+			appendDatSet(1,chartColors.grey,'All Comments',itm.all_comments);
+	  },this);
+		
+	}
+	else {
+		
+	  Ext.each(cData,function(itm){
+	    data.labels.push(itm.day);
+		
+			appendDatSet(0,chartColors.yellow,'D (Kg/Hr)',itm.d_kg_hr);
+			appendDatSet(1,chartColors.blue,'B (Kg/Hr)',itm.b_kg_hr);
+			appendDatSet(2,chartColors.green,'C (Kg/Hr)',itm.c_kg_hr);
+			appendDatSet(3,chartColors.purple,'E (Kg/Hr)',itm.e_kg_hr);
 
-  },this);
+	  },this);
+		
+	}
+	
+
 
 
   // We expect 'this' scope to be an <img> within the target <canvas> element

@@ -30,7 +30,9 @@ sub _line_chart_data {
 	my $Rs = $c
 		->model('DB::MakerStreamDayAvg')
 		->search_rs(undef,{
-			result_class => 'DBIx::Class::ResultClass::HashRefInflator'
+			result_class => 'DBIx::Class::ResultClass::HashRefInflator',
+			columns => [qw/day a_kg_hr b_kg_hr c_kg_hr d_kg_hr e_kg_hr complaints all_comments/],
+			order_by => { -asc => 'me.day' }
 		});
 		
 	if (my $after = $c->req->params->{after}) {
