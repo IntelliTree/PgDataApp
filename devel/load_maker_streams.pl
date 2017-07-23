@@ -5,6 +5,8 @@ use warnings;
 
 $| = 1;
 
+## time find raw_data/ -name *.tsv -exec devel/load_maker_streams.pl {} \;
+
 use RapidApp::Util ':all';
 use DateTime;
 
